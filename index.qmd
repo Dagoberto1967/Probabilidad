@@ -85,13 +85,13 @@ En este documento se presentan los conceptos fundamentales de probabilidad, sus 
 
 Al finalizar el estudio, el estudiante estará en capacidad de:
 
--   Identificar experimentos aleatorios, espacios muestrales y eventos.
--   Diferenciar las interpretaciones clásica, frecuentista y subjetiva de la probabilidad.
--   Aplicar los axiomas y propiedades básicas de probabilidad.
--   Calcular probabilidades condicionales y reconocer eventos independientes.
--   Utilizar los teoremas de multiplicación y probabilidad total.
--   Aplicar el teorema de Bayes para actualizar probabilidades con nueva información.
--   Resolver problemas de probabilidad mediante funciones de R.
+- Identificar experimentos aleatorios, espacios muestrales y eventos.
+- Diferenciar las interpretaciones clásica, frecuentista y subjetiva de la probabilidad.
+- Aplicar los axiomas y propiedades básicas de probabilidad.
+- Calcular probabilidades condicionales y reconocer eventos independientes.
+- Utilizar los teoremas de multiplicación y probabilidad total.
+- Aplicar el teorema de Bayes para actualizar probabilidades con nueva información.
+- Resolver problemas de probabilidad mediante funciones de R.
 
 # .Experimento aleatorio
 
@@ -105,10 +105,10 @@ Un experimento aleatorio debe cumplir, en términos generales, con estas caracte
 
 **Ejemplos en administración pública:**
 
--   Seleccionar al azar una solicitud de un conjunto de trámites y observar si fue resuelta dentro del plazo establecido.
--   Elegir un ciudadano y registrar si utiliza un servicio público digital.
--   Inspeccionar un contrato y determinar si presenta alguna observación.
--   Seleccionar un municipio y registrar si ejecutó al menos el 90 % de su presupuesto.
+- Seleccionar al azar una solicitud de un conjunto de trámites y observar si fue resuelta dentro del plazo establecido.
+- Elegir un ciudadano y registrar si utiliza un servicio público digital.
+- Inspeccionar un contrato y determinar si presenta alguna observación.
+- Seleccionar un municipio y registrar si ejecutó al menos el 90 % de su presupuesto.
 
 **Ejemplo. Atención de solicitudes**
 
@@ -116,8 +116,8 @@ Una oficina pública selecciona al azar una solicitud y registra si fue atendida
 
 Los resultados posibles son:
 
--   $C$: la solicitud fue atendida a tiempo.
--   $N$: la solicitud no fue atendida a tiempo.
+- $C$: la solicitud fue atendida a tiempo.
+- $N$: la solicitud no fue atendida a tiempo.
 
 El resultado de una selección concreta no se conoce antes de observar el expediente, por lo que se trata de un experimento aleatorio.
 
@@ -175,12 +175,12 @@ Un evento ocurre cuando el resultado observado pertenece al conjunto que lo defi
 
 **Tipos de eventos**
 
--   **Evento simple:** contiene un solo resultado.
--   **Evento compuesto:** contiene dos o más resultados.
--   **Evento seguro:** coincide con todo el espacio muestral; su probabilidad es 1.
--   **Evento imposible:** no contiene resultados; su probabilidad es 0.
--   **Eventos complementarios:** uno ocurre cuando el otro no ocurre.
--   **Eventos mutuamente excluyentes:** no pueden ocurrir simultáneamente.
+- **Evento simple:** contiene un solo resultado.
+- **Evento compuesto:** contiene dos o más resultados.
+- **Evento seguro:** coincide con todo el espacio muestral; su probabilidad es 1.
+- **Evento imposible:** no contiene resultados; su probabilidad es 0.
+- **Eventos complementarios:** uno ocurre cuando el otro no ocurre.
+- **Eventos mutuamente excluyentes:** no pueden ocurrir simultáneamente.
 
 **Ejemplo. Lanzamiento de un dado**
 
@@ -192,9 +192,9 @@ $$
 
 Definimos los eventos:
 
--   $A$: obtener un número par, $A=\{2,4,6\}$.
--   $B$: obtener un número mayor que 4, $B=\{5,6\}$.
--   $A^c$: no obtener un número par, $A^c=\{1,3,5\}$.
+- $A$: obtener un número par, $A=\{2,4,6\}$.
+- $B$: obtener un número mayor que 4, $B=\{5,6\}$.
+- $A^c$: no obtener un número par, $A^c=\{1,3,5\}$.
 
 La intersección es:
 
@@ -281,8 +281,8 @@ $$
 
 Donde:
 
--   $f_A$: número de veces que ocurre el evento.
--   $n$: número total de repeticiones.
+- $f_A$: número de veces que ocurre el evento.
+- $n$: número total de repeticiones.
 
 **Ejemplo.**
 
@@ -326,7 +326,7 @@ plot(
 abline(h = 0.5, lty = 2, lwd = 2)
 ```
 
-**Simulación frecuentista con R**
+**Simulación frecuentista con Shiny Web**
 
 ::: callout-note
 ## Dar clic sobre la gráfica
@@ -463,8 +463,8 @@ En una encuesta a 500 ciudadanos se registró la siguiente información:
 
 Sea:
 
--   $J$: seleccionar un ciudadano joven.
--   $D$: seleccionar un ciudadano que realizó un trámite digital.
+- $J$: seleccionar un ciudadano joven.
+- $D$: seleccionar un ciudadano que realizó un trámite digital.
 
 La probabilidad de que un ciudadano haya realizado un trámite digital, dado que es joven, es:
 
@@ -601,8 +601,8 @@ Una entidad pública tiene expedientes de los cuales el 30 % presenta documentac
 
 Definimos:
 
--   $I$: expediente con documentación incompleta.
--   $E$: expediente con error de identificación.
+- $I$: expediente con documentación incompleta.
+- $E$: expediente con error de identificación.
 
 Se conoce:
 
@@ -663,9 +663,9 @@ $$
 
 Una alcaldía recibe solicitudes de tres dependencias:
 
--   Dependencia A: recibe el 40 % de las solicitudes; el 5 % presenta errores.
--   Dependencia B: recibe el 35 % de las solicitudes; el 8 % presenta errores.
--   Dependencia C: recibe el 25 % de las solicitudes; el 10 % presenta errores.
+- Dependencia A: recibe el 40 % de las solicitudes; el 5 % presenta errores.
+- Dependencia B: recibe el 35 % de las solicitudes; el 8 % presenta errores.
+- Dependencia C: recibe el 25 % de las solicitudes; el 10 % presenta errores.
 
 Sea $E$ el evento de que una solicitud presente errores. Se desea calcular la probabilidad total de que una solicitud seleccionada al azar tenga errores.
 
@@ -747,10 +747,10 @@ Para dos eventos $A$ y $B$, con $P(B)>0$:
 
 Donde:
 
--   $P(A)$: probabilidad inicial o *a priori*.
--   $P(B\mid A)$: probabilidad de observar la evidencia $B$ cuando ocurre $A$.
--   $P(B)$: probabilidad total de la evidencia.
--   $P(A\mid B)$: probabilidad actualizada o *a posteriori*.
+- $P(A)$: probabilidad inicial o *a priori*.
+- $P(B\mid A)$: probabilidad de observar la evidencia $B$ cuando ocurre $A$.
+- $P(B)$: probabilidad total de la evidencia.
+- $P(A\mid B)$: probabilidad actualizada o *a posteriori*.
 
 **Ejemplo. Detección de irregularidades**
 
@@ -758,14 +758,14 @@ Una entidad realiza una revisión preliminar para identificar posibles irregular
 
 Se estima que:
 
--   El 10 % de los contratos presenta irregularidades.
--   El procedimiento de revisión identifica correctamente el 90 % de los contratos irregulares.
--   El procedimiento señala equivocadamente como irregular el 5 % de los contratos que no tienen irregularidades.
+- El 10 % de los contratos presenta irregularidades.
+- El procedimiento de revisión identifica correctamente el 90 % de los contratos irregulares.
+- El procedimiento señala equivocadamente como irregular el 5 % de los contratos que no tienen irregularidades.
 
 Definimos:
 
--   $I$: el contrato presenta irregularidad.
--   $+$: el procedimiento emite una alerta positiva.
+- $I$: el contrato presenta irregularidad.
+- $+$: el procedimiento emite una alerta positiva.
 
 Los datos son:
 
@@ -859,6 +859,14 @@ plot(
 abline(a = 0, b = 1, lty = 2)
 ```
 
+**Shiny web teorema de Bayes**
+
+::: callout-note
+## Dar clic sobre la figura
+:::
+
+[![](images/clipboard-815471166.png){fig-align="center"}](https://connect.posit.cloud/dasaho2/content/01a1c78f-de13-aa6b-7057-6ed17437cbc4?utm_source=rsconnect-rstudio)
+
 # .Resumen de fórmulas fundamentales
 
 | Concepto | Fórmula |
@@ -922,23 +930,23 @@ Una entidad pública recibe solicitudes de tres dependencias. La dependencia A a
 
 Estas respuestas permiten verificar los resultados numéricos principales.
 
--   **Ejercicio 1:**
+- **Ejercicio 1:**
 
 $A=\{2,4,6\}$, $B=\{4,5,6\}$, $A\cup B=\{2,4,5,6\}$, $A\cap B=\{4,6\}$, $A^c=\{1,3,5\}$. Las probabilidades son $4/6$, $2/6$ y $3/6$, respectivamente, para unión, intersección y complemento.
 
--   **Ejercicio 2:**
+- **Ejercicio 2:**
 
 $P(A)=8/20=0.40$; $P(A^c)=0.60$.
 
--   **Ejercicio 3:**
+- **Ejercicio 3:**
 
 atención oportuna $=680/800=0.85$; incumplimiento $=0.15$.
 
--   **Ejercicio 4:**
+- **Ejercicio 4:**
 
 satisfacción $=(240+120)/600=0.60$; $P(\text{digital}\mid\text{satisfecho})=240/360=0.6667$; $P(\text{satisfecho}\mid\text{digital})=240/360=0.6667$. En este ejercicio ambos denominadores coinciden por los datos propuestos.
 
--   **Ejercicio 5:**
+- **Ejercicio 5:**
 
 $P(E)=0.50(0.04)+0.30(0.07)+0.20(0.10)=0.063$. $P(C\mid E)=0.20(0.10)/0.063\approx0.3175$, es decir, 31.75 %.
 
@@ -950,7 +958,7 @@ La probabilidad condicional, los teoremas de multiplicación y probabilidad tota
 
 # .Referencias bibliográficas
 
--   Devore, J. L. (2016). *Probability and Statistics for Engineering and the Sciences* (9th ed.). Cengage Learning.
--   Ross, S. M. (2014). *Introduction to Probability Models* (11th ed.). Academic Press.
--   Triola, M. F. (2018). *Elementary Statistics* (13th ed.). Pearson.
--   R Core Team. (2026). *R: A Language and Environment for Statistical Computing*. R Foundation for Statistical Computing. https://www.R-project.org/
+- Devore, J. L. (2016). *Probability and Statistics for Engineering and the Sciences* (9th ed.). Cengage Learning.
+- Ross, S. M. (2014). *Introduction to Probability Models* (11th ed.). Academic Press.
+- Triola, M. F. (2018). *Elementary Statistics* (13th ed.). Pearson.
+- R Core Team. (2026). *R: A Language and Environment for Statistical Computing*. R Foundation for Statistical Computing. https://www.R-project.org/
