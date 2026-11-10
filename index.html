@@ -1,0 +1,1702 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dagoberto Salgado Horta">
+
+<title>ELEMENTOS BÁSICOS DE PROBABILIDAD</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/quarto.js"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="index_files/libs/quarto-html/anchor.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="index_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<style>html{ scroll-behavior: smooth; }</style>
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background: #98b6ed;
+      }
+</style>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body>
+
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">ELEMENTOS BÁSICOS DE PROBABILIDAD</h1>
+            <p class="subtitle lead">Teoría, ejemplos y aplicaciones en R</p>
+                      </div>
+  </div>
+    
+  <div class="quarto-title-meta-author column-page-left">
+    <div class="quarto-title-meta-heading">Autor/a</div>
+    <div class="quarto-title-meta-heading">Afiliación</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author">Dagoberto Salgado Horta </p>
+    </div>
+    <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              <a href="https://www.ut.edu.co/">
+              Universidad del Tolima
+              </a>
+            </p>
+        </div>
+    </div>
+
+  <div class="quarto-title-meta column-page-left">
+
+        
+      <div>
+      <div class="quarto-title-meta-heading">Fecha de publicación</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">10 de noviembre de 2026</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="page-columns page-rows-contents page-layout-full">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Tabla de contenidos</h2>
+   
+  <ul>
+  <li><a href="#cargar-paquetes" id="toc-cargar-paquetes" class="nav-link active" data-scroll-target="#cargar-paquetes"><span class="header-section-number">1</span> .Cargar paquetes</a></li>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">2</span> .Introducción</a></li>
+  <li><a href="#resultados-de-aprendizaje" id="toc-resultados-de-aprendizaje" class="nav-link" data-scroll-target="#resultados-de-aprendizaje"><span class="header-section-number">3</span> .Resultados de aprendizaje</a></li>
+  <li><a href="#experimento-aleatorio" id="toc-experimento-aleatorio" class="nav-link" data-scroll-target="#experimento-aleatorio"><span class="header-section-number">4</span> .Experimento aleatorio</a></li>
+  <li><a href="#espacio-muestral" id="toc-espacio-muestral" class="nav-link" data-scroll-target="#espacio-muestral"><span class="header-section-number">5</span> .Espacio muestral</a></li>
+  <li><a href="#suceso-o-evento" id="toc-suceso-o-evento" class="nav-link" data-scroll-target="#suceso-o-evento"><span class="header-section-number">6</span> .Suceso o evento</a></li>
+  <li><a href="#concepto-de-probabilidad" id="toc-concepto-de-probabilidad" class="nav-link" data-scroll-target="#concepto-de-probabilidad"><span class="header-section-number">7</span> .Concepto de probabilidad</a></li>
+  <li><a href="#axiomas-de-probabilidad" id="toc-axiomas-de-probabilidad" class="nav-link" data-scroll-target="#axiomas-de-probabilidad"><span class="header-section-number">8</span> .Axiomas de probabilidad</a></li>
+  <li><a href="#probabilidad-condicional" id="toc-probabilidad-condicional" class="nav-link" data-scroll-target="#probabilidad-condicional"><span class="header-section-number">9</span> .Probabilidad condicional</a></li>
+  <li><a href="#independencia-de-eventos" id="toc-independencia-de-eventos" class="nav-link" data-scroll-target="#independencia-de-eventos"><span class="header-section-number">10</span> .Independencia de eventos</a></li>
+  <li><a href="#teorema-de-la-multiplicación" id="toc-teorema-de-la-multiplicación" class="nav-link" data-scroll-target="#teorema-de-la-multiplicación"><span class="header-section-number">11</span> .Teorema de la multiplicación</a></li>
+  <li><a href="#teorema-de-la-probabilidad-total" id="toc-teorema-de-la-probabilidad-total" class="nav-link" data-scroll-target="#teorema-de-la-probabilidad-total"><span class="header-section-number">12</span> .Teorema de la probabilidad total</a></li>
+  <li><a href="#teorema-de-bayes" id="toc-teorema-de-bayes" class="nav-link" data-scroll-target="#teorema-de-bayes"><span class="header-section-number">13</span> .Teorema de Bayes</a></li>
+  <li><a href="#resumen-de-fórmulas-fundamentales" id="toc-resumen-de-fórmulas-fundamentales" class="nav-link" data-scroll-target="#resumen-de-fórmulas-fundamentales"><span class="header-section-number">14</span> .Resumen de fórmulas fundamentales</a></li>
+  <li><a href="#taller-de-aplicación" id="toc-taller-de-aplicación" class="nav-link" data-scroll-target="#taller-de-aplicación"><span class="header-section-number">15</span> .Taller de aplicación</a>
+  <ul class="collapse">
+  <li><a href="#ejercicio-1.-espacio-muestral-y-eventos" id="toc-ejercicio-1.-espacio-muestral-y-eventos" class="nav-link" data-scroll-target="#ejercicio-1.-espacio-muestral-y-eventos"><span class="header-section-number">15.1</span> Ejercicio 1. Espacio muestral y eventos</a></li>
+  <li><a href="#ejercicio-2.-probabilidad-clásica" id="toc-ejercicio-2.-probabilidad-clásica" class="nav-link" data-scroll-target="#ejercicio-2.-probabilidad-clásica"><span class="header-section-number">15.2</span> Ejercicio 2. Probabilidad clásica</a></li>
+  <li><a href="#ejercicio-3.-probabilidad-frecuentista" id="toc-ejercicio-3.-probabilidad-frecuentista" class="nav-link" data-scroll-target="#ejercicio-3.-probabilidad-frecuentista"><span class="header-section-number">15.3</span> Ejercicio 3. Probabilidad frecuentista</a></li>
+  <li><a href="#ejercicio-4.-probabilidad-condicional" id="toc-ejercicio-4.-probabilidad-condicional" class="nav-link" data-scroll-target="#ejercicio-4.-probabilidad-condicional"><span class="header-section-number">15.4</span> Ejercicio 4. Probabilidad condicional</a></li>
+  <li><a href="#ejercicio-5.-teorema-de-bayes" id="toc-ejercicio-5.-teorema-de-bayes" class="nav-link" data-scroll-target="#ejercicio-5.-teorema-de-bayes"><span class="header-section-number">15.5</span> Ejercicio 5. Teorema de Bayes</a></li>
+  </ul></li>
+  <li><a href="#respuestas" id="toc-respuestas" class="nav-link" data-scroll-target="#respuestas"><span class="header-section-number">16</span> .Respuestas</a></li>
+  <li><a href="#conclusiones" id="toc-conclusiones" class="nav-link" data-scroll-target="#conclusiones"><span class="header-section-number">17</span> .Conclusiones</a></li>
+  <li><a href="#referencias-bibliográficas" id="toc-referencias-bibliográficas" class="nav-link" data-scroll-target="#referencias-bibliográficas"><span class="header-section-number">18</span> .Referencias bibliográficas</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
+
+
+
+
+<div style="position:absolute; top:10px; right:10px;">
+<img src="Logo_ut.png" width="150">
+</div>
+<style>
+body{
+  background-color:#f7f6ed;
+  font-size:130%;
+  text-align:justify;
+}
+</style>
+<section id="cargar-paquetes" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> .Cargar paquetes</h1>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ipak <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg){</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">options</span>(<span class="at">repos =</span> <span class="fu">c</span>(<span class="at">CRAN=</span><span class="st">"https://cloud.r-project.org"</span>))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  new.pkg <span class="ot">&lt;-</span> pkg[<span class="sc">!</span>(pkg <span class="sc">%in%</span> <span class="fu">rownames</span>(<span class="fu">installed.packages</span>()))]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">length</span>(new.pkg)) <span class="fu">install.packages</span>(new.pkg, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">invisible</span>(<span class="fu">lapply</span>(pkg, <span class="cf">function</span>(p)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(p, <span class="at">character.only =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>packages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"tidyverse"</span>,<span class="st">"kableExtra"</span>,<span class="st">"psych"</span>,<span class="st">"readxl"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ipak</span>(packages)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="introducción" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> .Introducción</h1>
+<p>La probabilidad es una herramienta matemática que permite cuantificar la incertidumbre asociada a los resultados de un fenómeno aleatorio. En la administración pública, por ejemplo, puede utilizarse para estudiar la posibilidad de que una solicitud sea atendida dentro de un plazo, estimar la ocurrencia de fallas en un servicio, analizar la selección de beneficiarios de un programa o evaluar riesgos en la ejecución presupuestal.</p>
+<p>En este documento se presentan los conceptos fundamentales de probabilidad, sus propiedades y teoremas principales. Cada tema incluye ejemplos contextualizados y aplicaciones reproducibles en <strong>R</strong>.</p>
+</section>
+<section id="resultados-de-aprendizaje" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> .Resultados de aprendizaje</h1>
+<p>Al finalizar el estudio, el estudiante estará en capacidad de:</p>
+<ul>
+<li>Identificar experimentos aleatorios, espacios muestrales y eventos.</li>
+<li>Diferenciar las interpretaciones clásica, frecuentista y subjetiva de la probabilidad.</li>
+<li>Aplicar los axiomas y propiedades básicas de probabilidad.</li>
+<li>Calcular probabilidades condicionales y reconocer eventos independientes.</li>
+<li>Utilizar los teoremas de multiplicación y probabilidad total.</li>
+<li>Aplicar el teorema de Bayes para actualizar probabilidades con nueva información.</li>
+<li>Resolver problemas de probabilidad mediante funciones de R.</li>
+</ul>
+</section>
+<section id="experimento-aleatorio" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> .Experimento aleatorio</h1>
+<p>Un <strong>experimento aleatorio</strong> es un procedimiento o proceso cuyo resultado no puede determinarse con certeza antes de realizarlo, aunque se conozcan los posibles resultados.</p>
+<p>Un experimento aleatorio debe cumplir, en términos generales, con estas características:</p>
+<ol type="1">
+<li>Puede repetirse bajo condiciones semejantes.</li>
+<li>Se conocen los resultados posibles.</li>
+<li>No es posible anticipar con certeza cuál resultado ocurrirá en una realización particular.</li>
+</ol>
+<p><strong>Ejemplos en administración pública:</strong></p>
+<ul>
+<li>Seleccionar al azar una solicitud de un conjunto de trámites y observar si fue resuelta dentro del plazo establecido.</li>
+<li>Elegir un ciudadano y registrar si utiliza un servicio público digital.</li>
+<li>Inspeccionar un contrato y determinar si presenta alguna observación.</li>
+<li>Seleccionar un municipio y registrar si ejecutó al menos el 90 % de su presupuesto.</li>
+</ul>
+<p><strong>Ejemplo. Atención de solicitudes</strong></p>
+<p>Una oficina pública selecciona al azar una solicitud y registra si fue atendida dentro del plazo establecido.</p>
+<p>Los resultados posibles son:</p>
+<ul>
+<li><span class="math inline">C</span>: la solicitud fue atendida a tiempo.</li>
+<li><span class="math inline">N</span>: la solicitud no fue atendida a tiempo.</li>
+</ul>
+<p>El resultado de una selección concreta no se conoce antes de observar el expediente, por lo que se trata de un experimento aleatorio.</p>
+</section>
+<section id="espacio-muestral" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> .Espacio muestral</h1>
+<p>El <strong>espacio muestral</strong>, representado por <span class="math inline">\Omega</span> o <span class="math inline">S</span>, es el conjunto de todos los resultados posibles de un experimento aleatorio.</p>
+<p><strong>Ejemplos</strong></p>
+<p><strong>Lanzamiento de una moneda:</strong></p>
+<p><span class="math display">
+\Omega=\{\text{cara},\text{sello}\}
+</span></p>
+<p><strong>Lanzamiento de un dado:</strong></p>
+<p><span class="math display">
+\Omega=\{1,2,3,4,5,6\}
+</span></p>
+<p><strong>Evaluación de una solicitud:</strong></p>
+<p><span class="math display">
+\Omega=\{\text{A tiempo},\text{Fuera de plazo}\}
+</span></p>
+<p>En experimentos con varios pasos, el espacio muestral puede construirse mediante pares ordenados o productos cartesianos. Por ejemplo, al lanzar dos monedas:</p>
+<p><span class="math display">
+\Omega=\{(C,C),(C,S),(S,C),(S,S)\}
+</span></p>
+<p><strong>Aplicación en R: construir espacios muestrales</strong></p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Espacio muestral de un dado</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>dado <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>dado</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3 4 5 6</code></pre>
+</div>
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Espacio muestral de dos lanzamientos de moneda</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>moneda <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Cara"</span>, <span class="st">"Sello"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>dos_lanzamientos <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">primer_lanzamiento =</span> moneda,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">segundo_lanzamiento =</span> moneda</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>dos_lanzamientos</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  primer_lanzamiento segundo_lanzamiento
+1               Cara                Cara
+2              Sello                Cara
+3               Cara               Sello
+4              Sello               Sello</code></pre>
+</div>
+</div>
+</section>
+<section id="suceso-o-evento" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> .Suceso o evento</h1>
+<p>Un <strong>evento</strong> es cualquier subconjunto del espacio muestral. Se representa habitualmente con letras mayúsculas, como <span class="math inline">A</span>, <span class="math inline">B</span> o <span class="math inline">C</span>.</p>
+<p>Un evento ocurre cuando el resultado observado pertenece al conjunto que lo define.</p>
+<p><strong>Tipos de eventos</strong></p>
+<ul>
+<li><strong>Evento simple:</strong> contiene un solo resultado.</li>
+<li><strong>Evento compuesto:</strong> contiene dos o más resultados.</li>
+<li><strong>Evento seguro:</strong> coincide con todo el espacio muestral; su probabilidad es 1.</li>
+<li><strong>Evento imposible:</strong> no contiene resultados; su probabilidad es 0.</li>
+<li><strong>Eventos complementarios:</strong> uno ocurre cuando el otro no ocurre.</li>
+<li><strong>Eventos mutuamente excluyentes:</strong> no pueden ocurrir simultáneamente.</li>
+</ul>
+<p><strong>Ejemplo. Lanzamiento de un dado</strong></p>
+<p>Considere:</p>
+<p><span class="math display">
+\Omega=\{1,2,3,4,5,6\}
+</span></p>
+<p>Definimos los eventos:</p>
+<ul>
+<li><span class="math inline">A</span>: obtener un número par, <span class="math inline">A=\{2,4,6\}</span>.</li>
+<li><span class="math inline">B</span>: obtener un número mayor que 4, <span class="math inline">B=\{5,6\}</span>.</li>
+<li><span class="math inline">A^c</span>: no obtener un número par, <span class="math inline">A^c=\{1,3,5\}</span>.</li>
+</ul>
+<p>La intersección es:</p>
+<p><span class="math display">
+A\cap B=\{6\}
+</span></p>
+<p>La unión es:</p>
+<p><span class="math display">
+A\cup B=\{2,4,5,6\}
+</span></p>
+<p><strong>Operaciones entre eventos</strong></p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Operación</th>
+<th>Notación</th>
+<th>Interpretación</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Unión</td>
+<td><span class="math inline">A\cup B</span></td>
+<td>Ocurre A, B o ambos</td>
+</tr>
+<tr class="even">
+<td>Intersección</td>
+<td><span class="math inline">A\cap B</span></td>
+<td>Ocurren A y B</td>
+</tr>
+<tr class="odd">
+<td>Complemento</td>
+<td><span class="math inline">A^c</span></td>
+<td>No ocurre A</td>
+</tr>
+<tr class="even">
+<td>Diferencia</td>
+<td><span class="math inline">A-B</span></td>
+<td>Ocurre A, pero no B</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Aplicación en R</strong></p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>)       <span class="co"># Número par</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">6</span>)         <span class="co"># Número mayor que 4</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">union</span>(A, B)           <span class="co"># A unión B</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2 4 6 5</code></pre>
+</div>
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">intersect</span>(A, B)       <span class="co"># A intersección B</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6</code></pre>
+</div>
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(S, A)         <span class="co"># Complemento de A</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 3 5</code></pre>
+</div>
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(A, B)         <span class="co"># A menos B</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2 4</code></pre>
+</div>
+</div>
+</section>
+<section id="concepto-de-probabilidad" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> .Concepto de probabilidad</h1>
+<p>La <strong>probabilidad</strong> es una medida numérica de la posibilidad de ocurrencia de un evento. Se expresa mediante un número entre 0 y 1:</p>
+<p><span class="math display">
+0\leq P(A)\leq 1
+</span></p>
+<p>Una probabilidad cercana a 0 indica poca posibilidad de ocurrencia; una cercana a 1 indica alta posibilidad.</p>
+<p><strong>Enfoque clásico</strong></p>
+<p>El enfoque clásico se utiliza cuando los resultados elementales son igualmente probables. La probabilidad de un evento <span class="math inline">A</span> se calcula como:</p>
+<p><span class="math display">
+P(A)=\frac{\text{Número de resultados favorables}}
+{\text{Número total de resultados posibles}}
+=\frac{|A|}{|\Omega|}
+</span></p>
+<p><strong>Ejemplo.</strong></p>
+<p>Se lanza un dado equilibrado. ¿Cuál es la probabilidad de obtener un número par?</p>
+<p>Los resultados favorables son <span class="math inline">\{2,4,6\}</span>, es decir, tres resultados, de seis posibles:</p>
+<p><span class="math display">
+P(A)=\frac{3}{6}=0.5
+</span></p>
+<p>Por tanto, la probabilidad es del 50 %.</p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>favorables <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>posibles <span class="ot">&lt;-</span> <span class="dv">6</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>p_par <span class="ot">&lt;-</span> favorables <span class="sc">/</span> posibles</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>p_par</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5</code></pre>
+</div>
+</div>
+<p><strong>Enfoque frecuentista</strong></p>
+<p>El enfoque frecuentista interpreta la probabilidad como el límite de la frecuencia relativa de ocurrencia de un evento cuando el experimento se repite un número muy grande de veces, bajo condiciones comparables.</p>
+<p>Para un número finito de repeticiones se estima mediante:</p>
+<p><span class="math display">
+\widehat{P}(A)=\frac{f_A}{n}
+</span></p>
+<p>Donde:</p>
+<ul>
+<li><span class="math inline">f_A</span>: número de veces que ocurre el evento.</li>
+<li><span class="math inline">n</span>: número total de repeticiones.</li>
+</ul>
+<p><strong>Ejemplo.</strong></p>
+<p>En una oficina se revisan 200 solicitudes y se encuentra que 150 fueron atendidas dentro del plazo. La probabilidad frecuentista estimada de atención oportuna es:</p>
+<p><span class="math display">
+\widehat{P}(A)=\frac{150}{200}=0.75
+</span></p>
+<p>La estimación es del 75 %. Es una estimación basada en datos observados, no una garantía de que el mismo porcentaje se mantenga en el futuro.</p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>solicitudes <span class="ot">&lt;-</span> <span class="dv">200</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>atendidas_tiempo <span class="ot">&lt;-</span> <span class="dv">150</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>prob_frecuentista <span class="ot">&lt;-</span> atendidas_tiempo <span class="sc">/</span> solicitudes</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>prob_frecuentista</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.75</code></pre>
+</div>
+</div>
+<p><strong>Simulación frecuentista con R</strong></p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>lanzamientos <span class="ot">&lt;-</span> <span class="fu">sample</span>(</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">"Cara"</span>, <span class="st">"Sello"</span>),</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> n,</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">replace =</span> <span class="cn">TRUE</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>frecuencia_relativa <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(lanzamientos <span class="sc">==</span> <span class="st">"Cara"</span>) <span class="sc">/</span> <span class="fu">seq_len</span>(n)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  frecuencia_relativa,</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"l"</span>,</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Número de lanzamientos"</span>,</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"Frecuencia relativa de cara"</span>,</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Convergencia de la frecuencia relativa"</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fl">0.5</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Simulación frecuentista con Shiny Web</strong></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Dar clic sobre la gráfica
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://dago670826.shinyapps.io/LGN2/"><img src="images/clipboard-3953591685.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
+</figure>
+</div>
+<p>La gráfica muestra cómo la frecuencia relativa tiende a estabilizarse alrededor de 0.5 a medida que aumenta el número de lanzamientos. En una simulación finita no se espera una convergencia perfectamente monótona.</p>
+<p><strong>Enfoque subjetivo</strong></p>
+<p>El enfoque subjetivo considera la probabilidad como una valoración razonada de la incertidumbre, basada en la información disponible, la experiencia, el juicio experto y las circunstancias del problema.</p>
+<p><strong>Ejemplo.</strong></p>
+<p>Un equipo técnico estima que existe una probabilidad de 0.70 de que un proyecto público finalice en la fecha prevista, teniendo en cuenta el avance de obra, la disponibilidad presupuestal y los riesgos identificados.</p>
+<p>Este valor no proviene necesariamente de resultados igualmente probables ni de una frecuencia histórica. Es una evaluación informada que puede actualizarse cuando aparece nueva evidencia.</p>
+<p><strong>Comparación de los enfoques</strong></p>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Enfoque</th>
+<th>Fundamento</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Clásico</td>
+<td>Resultados igualmente probables</td>
+<td>Lanzamiento de un dado equilibrado</td>
+</tr>
+<tr class="even">
+<td>Frecuentista</td>
+<td>Frecuencia relativa observada o límite de frecuencias</td>
+<td>Proporción histórica de trámites oportunos</td>
+</tr>
+<tr class="odd">
+<td>Subjetivo</td>
+<td>Información y juicio razonado</td>
+<td>Evaluación experta del riesgo de retraso</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="axiomas-de-probabilidad" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> .Axiomas de probabilidad</h1>
+<p>La teoría moderna de probabilidad se fundamenta en tres axiomas, que establecen las reglas básicas para asignar probabilidades.</p>
+<p><strong>Axioma 1. No negatividad</strong></p>
+<p>La probabilidad de cualquier evento es mayor o igual que cero:</p>
+<p><span class="math display">
+P(A)\geq 0
+</span></p>
+<p><strong>Axioma 2. Normalización</strong></p>
+<p>La probabilidad del espacio muestral completo es igual a uno:</p>
+<p><span class="math display">
+P(\Omega)=1
+</span></p>
+<p><strong>Axioma 3. Aditividad para eventos mutuamente excluyentes</strong></p>
+<p>Si <span class="math inline">A</span> y <span class="math inline">B</span> son eventos mutuamente excluyentes, entonces:</p>
+<p><span class="math display">
+P(A\cup B)=P(A)+P(B)
+</span></p>
+<p>Para una colección numerable de eventos mutuamente excluyentes, la probabilidad de la unión es la suma de sus probabilidades.</p>
+<p><strong>Propiedades derivadas</strong></p>
+<p><strong>Probabilidad del evento imposible:</strong></p>
+<p><span class="math display">
+P(\varnothing)=0
+</span></p>
+<p><strong>Regla del complemento:</strong></p>
+<p><span class="math display">
+P(A^c)=1-P(A)
+</span></p>
+<p><strong>Regla general de la suma:</strong></p>
+<p><span class="math display">
+P(A\cup B)=P(A)+P(B)-P(A\cap B)
+</span></p>
+<p><strong>Monotonicidad:</strong></p>
+<p>si <span class="math inline">A\subseteq B</span>, entonces:</p>
+<p><span class="math display">
+P(A)\leq P(B)
+</span></p>
+<p><strong>Ejemplo. Clasificación de solicitudes</strong></p>
+<p>En una dependencia pública, la probabilidad de que una solicitud sea clasificada como de prioridad alta es 0.25. La probabilidad de que sea de prioridad media es 0.45. Si ambas categorías son mutuamente excluyentes, la probabilidad de que sea alta o media es:</p>
+<p><span class="math display">
+P(A\cup M)=0.25+0.45=0.70
+</span></p>
+<p>La probabilidad de que no sea de prioridad alta es:</p>
+<p><span class="math display">
+P(A^c)=1-0.25=0.75
+</span></p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>p_alta <span class="ot">&lt;-</span> <span class="fl">0.25</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>p_media <span class="ot">&lt;-</span> <span class="fl">0.45</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>p_alta_o_media <span class="ot">&lt;-</span> p_alta <span class="sc">+</span> p_media</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>p_no_alta <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> p_alta</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>p_alta_o_media</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.7</code></pre>
+</div>
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>p_no_alta</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.75</code></pre>
+</div>
+</div>
+</section>
+<section id="probabilidad-condicional" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> .Probabilidad condicional</h1>
+<p>La <strong>probabilidad condicional</strong> mide la probabilidad de que ocurra un evento <span class="math inline">A</span>, sabiendo que ya ocurrió otro evento <span class="math inline">B</span>. Se representa como <span class="math inline">P(A\mid B)</span>.</p>
+<p>Siempre que <span class="math inline">P(B)&gt;0</span>, se define como:</p>
+<p><span class="math display">
+P(A\mid B)=\frac{P(A\cap B)}{P(B)}
+</span></p>
+<p>La información de que ocurrió <span class="math inline">B</span> modifica el conjunto de referencia sobre el cual se calcula la probabilidad.</p>
+<p><learningviz type_id="CONDITIONAL_PROBABILITY_DEFINITION" locale_override="es-419"></learningviz></p>
+<p><strong>Ejemplo. Uso de servicios digitales</strong></p>
+<p>En una encuesta a 500 ciudadanos se registró la siguiente información:</p>
+<table class="table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 34%">
+<col style="width: 38%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: right;">Realizó trámite digital</th>
+<th style="text-align: right;">No realizó trámite digital</th>
+<th style="text-align: right;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Jóvenes</td>
+<td style="text-align: right;">180</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">250</td>
+</tr>
+<tr class="even">
+<td>Adultos</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">250</td>
+</tr>
+<tr class="odd">
+<td><strong>Total</strong></td>
+<td style="text-align: right;"><strong>280</strong></td>
+<td style="text-align: right;"><strong>220</strong></td>
+<td style="text-align: right;"><strong>500</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Sea:</p>
+<ul>
+<li><span class="math inline">J</span>: seleccionar un ciudadano joven.</li>
+<li><span class="math inline">D</span>: seleccionar un ciudadano que realizó un trámite digital.</li>
+</ul>
+<p>La probabilidad de que un ciudadano haya realizado un trámite digital, dado que es joven, es:</p>
+<p><span class="math display">
+P(D\mid J)=\frac{P(D\cap J)}{P(J)}
+=\frac{180}{250}=0.72
+</span></p>
+<p>La probabilidad es del 72 %.</p>
+<p>En cambio, la probabilidad de que sea joven, dado que realizó un trámite digital, es:</p>
+<p><span class="math display">
+P(J\mid D)=\frac{180}{280}\approx 0.6429
+</span></p>
+<p>Las dos probabilidades condicionales no son iguales: el evento que aparece después de la barra vertical define la condición.</p>
+<p><strong>Aplicación en R</strong></p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>tabla <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">180</span>, <span class="dv">70</span>,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">100</span>, <span class="dv">150</span>),</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">2</span>,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">byrow =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">dimnames =</span> <span class="fu">list</span>(</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Grupo =</span> <span class="fu">c</span>(<span class="st">"Joven"</span>, <span class="st">"Adulto"</span>),</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Tramite =</span> <span class="fu">c</span>(<span class="st">"Digital"</span>, <span class="st">"No digital"</span>)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>tabla</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Tramite
+Grupo    Digital No digital
+  Joven      180         70
+  Adulto     100        150</code></pre>
+</div>
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># P(Digital | Joven)</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>p_dado_joven <span class="ot">&lt;-</span> tabla[<span class="st">"Joven"</span>, <span class="st">"Digital"</span>] <span class="sc">/</span> <span class="fu">sum</span>(tabla[<span class="st">"Joven"</span>, ])</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>p_dado_joven</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.72</code></pre>
+</div>
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># P(Joven | Digital)</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>p_joven_dado_digital <span class="ot">&lt;-</span> tabla[<span class="st">"Joven"</span>, <span class="st">"Digital"</span>] <span class="sc">/</span> <span class="fu">sum</span>(tabla[, <span class="st">"Digital"</span>])</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>p_joven_dado_digital</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6428571</code></pre>
+</div>
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Proporciones por fila</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tabla, <span class="at">margin =</span> <span class="dv">1</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Tramite
+Grupo    Digital No digital
+  Joven     0.72       0.28
+  Adulto    0.40       0.60</code></pre>
+</div>
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Proporciones por columna</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tabla, <span class="at">margin =</span> <span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Tramite
+Grupo      Digital No digital
+  Joven  0.6428571  0.3181818
+  Adulto 0.3571429  0.6818182</code></pre>
+</div>
+</div>
+</section>
+<section id="independencia-de-eventos" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> .Independencia de eventos</h1>
+<p>Dos eventos <span class="math inline">A</span> y <span class="math inline">B</span> son <strong>independientes</strong> cuando la ocurrencia de uno no modifica la probabilidad de ocurrencia del otro.</p>
+<p>La condición matemática es:</p>
+<p><span class="math display">
+P(A\cap B)=P(A)P(B)
+</span></p>
+<p>Si <span class="math inline">P(B)&gt;0</span>, una condición equivalente es:</p>
+<p><span class="math display">
+P(A\mid B)=P(A)
+</span></p>
+<p><strong>Importante:</strong></p>
+<p>independencia y exclusión mutua son conceptos diferentes. Si dos eventos son mutuamente excluyentes y ambos tienen probabilidad positiva, no pueden ser independientes.</p>
+<p><strong>Ejemplo. Dos selecciones independientes</strong></p>
+<p>Suponga que se realizan dos sorteos independientes, cada uno con probabilidad 0.4 de seleccionar una solicitud prioritaria.</p>
+<p>Sea <span class="math inline">A</span>: el primer sorteo selecciona una solicitud prioritaria.</p>
+<p>Sea <span class="math inline">B</span>: el segundo sorteo selecciona una solicitud prioritaria.</p>
+<p>Entonces:</p>
+<p><span class="math display">
+P(A\cap B)=0.4(0.4)=0.16
+</span></p>
+<p>La probabilidad de que ambos sorteos seleccionen solicitudes prioritarias es 0.16.</p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>p_A <span class="ot">&lt;-</span> <span class="fl">0.4</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>p_B <span class="ot">&lt;-</span> <span class="fl">0.4</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>p_A_inter_B <span class="ot">&lt;-</span> p_A <span class="sc">*</span> p_B</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>p_A_inter_B</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.16</code></pre>
+</div>
+</div>
+<p><strong>Verificación de independencia con datos</strong></p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>p_A_obs <span class="ot">&lt;-</span> <span class="fl">0.30</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>p_B_obs <span class="ot">&lt;-</span> <span class="fl">0.50</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>p_inter_obs <span class="ot">&lt;-</span> <span class="fl">0.15</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Si se cumple esta igualdad, los eventos son independientes</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>independientes <span class="ot">&lt;-</span> <span class="fu">isTRUE</span>(</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">all.equal</span>(p_inter_obs, p_A_obs <span class="sc">*</span> p_B_obs)</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>independientes</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<p>En datos reales, las probabilidades observadas son estimaciones. Por ello, una igualdad aproximada no demuestra por sí sola independencia en la población.</p>
+</section>
+<section id="teorema-de-la-multiplicación" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> .Teorema de la multiplicación</h1>
+<p>El teorema de la multiplicación permite calcular la probabilidad de que dos eventos ocurran simultáneamente:</p>
+<p><span class="math display">
+P(A\cap B)=P(A)P(B\mid A)
+</span></p>
+<p>También puede escribirse como:</p>
+<p><span class="math display">
+P(A\cap B)=P(B)P(A\mid B)
+</span></p>
+<p>Si los eventos son independientes, se simplifica a:</p>
+<p><span class="math display">
+P(A\cap B)=P(A)P(B)
+</span></p>
+<p><strong>Ejemplo. Revisión de expedientes</strong></p>
+<p>Una entidad pública tiene expedientes de los cuales el 30 % presenta documentación incompleta. Entre los expedientes incompletos, el 20 % presenta además errores de identificación.</p>
+<p>Definimos:</p>
+<ul>
+<li><span class="math inline">I</span>: expediente con documentación incompleta.</li>
+<li><span class="math inline">E</span>: expediente con error de identificación.</li>
+</ul>
+<p>Se conoce:</p>
+<p><span class="math display">
+P(I)=0.30,\qquad P(E\mid I)=0.20
+</span></p>
+<p>La probabilidad de que un expediente presente ambas características es:</p>
+<p><span class="math display">
+P(I\cap E)=0.30(0.20)=0.06
+</span></p>
+<p>Por tanto, el 6 % de los expedientes presenta simultáneamente documentación incompleta y errores de identificación.</p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>p_incompleto <span class="ot">&lt;-</span> <span class="fl">0.30</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>p_error_dado_incompleto <span class="ot">&lt;-</span> <span class="fl">0.20</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>p_ambos <span class="ot">&lt;-</span> p_incompleto <span class="sc">*</span> p_error_dado_incompleto</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>p_ambos</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.06</code></pre>
+</div>
+</div>
+<p><strong>Aplicación: selección sin reemplazo</strong></p>
+<p>Una oficina tiene 10 expedientes: 4 incompletos y 6 completos. Se seleccionan dos expedientes consecutivamente, sin devolver el primero. ¿Cuál es la probabilidad de que ambos sean incompletos?</p>
+<p><span class="math display">
+P(I_1\cap I_2)=\frac{4}{10}\frac{3}{9}
+=\frac{2}{15}\approx 0.1333
+</span></p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>p_dos_incompletos <span class="ot">&lt;-</span> (<span class="dv">4</span> <span class="sc">/</span> <span class="dv">10</span>) <span class="sc">*</span> (<span class="dv">3</span> <span class="sc">/</span> <span class="dv">9</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>p_dos_incompletos</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1333333</code></pre>
+</div>
+</div>
+<p>La segunda probabilidad condicional cambia porque el primer expediente no se devuelve. Por tanto, las selecciones no son independientes.</p>
+</section>
+<section id="teorema-de-la-probabilidad-total" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> .Teorema de la probabilidad total</h1>
+<p>El <strong>teorema de la probabilidad total</strong> permite calcular la probabilidad de un evento a partir de una partición del espacio muestral.</p>
+<p>Suponga que <span class="math inline">B_1,B_2,\ldots,B_k</span> son eventos mutuamente excluyentes, exhaustivos y con probabilidades positivas. Para cualquier evento <span class="math inline">A</span>:</p>
+<p><span class="math display">
+P(A)=\sum_{i=1}^{k}P(A\mid B_i)P(B_i)
+</span></p>
+<p>Es decir:</p>
+<p><span class="math display">
+P(A)=P(A\mid B_1)P(B_1)+\cdots+
+P(A\mid B_k)P(B_k)
+</span></p>
+<p><strong>Ejemplo. Solicitudes por dependencia</strong></p>
+<p>Una alcaldía recibe solicitudes de tres dependencias:</p>
+<ul>
+<li>Dependencia A: recibe el 40 % de las solicitudes; el 5 % presenta errores.</li>
+<li>Dependencia B: recibe el 35 % de las solicitudes; el 8 % presenta errores.</li>
+<li>Dependencia C: recibe el 25 % de las solicitudes; el 10 % presenta errores.</li>
+</ul>
+<p>Sea <span class="math inline">E</span> el evento de que una solicitud presente errores. Se desea calcular la probabilidad total de que una solicitud seleccionada al azar tenga errores.</p>
+<p>Datos:</p>
+<p><span class="math display">
+\begin{aligned}
+P(A)&amp;=0.40 &amp; P(E\mid A)&amp;=0.05\\
+P(B)&amp;=0.35 &amp; P(E\mid B)&amp;=0.08\\
+P(C)&amp;=0.25 &amp; P(E\mid C)&amp;=0.10
+\end{aligned}
+</span></p>
+<p>Aplicando el teorema:</p>
+<p><span class="math display">
+\begin{aligned}
+P(E)&amp;=P(E\mid A)P(A)+P(E\mid B)P(B)\\
+&amp;\quad+P(E\mid C)P(C)\\
+&amp;=(0.05)(0.40)+(0.08)(0.35)+(0.10)(0.25)\\
+&amp;=0.068
+\end{aligned}
+</span></p>
+<p>La probabilidad total de error es 0.068, es decir, 6.8 %.</p>
+<p><strong>Aplicación en R</strong></p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>dependencia <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>peso <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.40</span>, <span class="fl">0.35</span>, <span class="fl">0.25</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>prob_error <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.05</span>, <span class="fl">0.08</span>, <span class="fl">0.10</span>)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> <span class="fu">sum</span>(peso <span class="sc">*</span> prob_error)</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>resultado</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.073</code></pre>
+</div>
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Dependencia =</span> dependencia,</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Proporcion_solicitudes =</span> peso,</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Probabilidad_error =</span> prob_error,</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Aporte_probabilidad =</span> peso <span class="sc">*</span> prob_error</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Dependencia Proporcion_solicitudes Probabilidad_error Aporte_probabilidad
+1           A                   0.40               0.05               0.020
+2           B                   0.35               0.08               0.028
+3           C                   0.25               0.10               0.025</code></pre>
+</div>
+</div>
+<p><strong>Simulación del ejemplo</strong></p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100000</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>dependencias <span class="ot">&lt;-</span> <span class="fu">sample</span>(</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  dependencia,</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> n,</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">replace =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">prob =</span> peso</span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>probabilidades_por_grupo <span class="ot">&lt;-</span> <span class="fu">setNames</span>(prob_error, dependencia)</span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a>errores <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(</span>
+<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a>  n,</span>
+<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="dv">1</span>,</span>
+<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">prob =</span> probabilidades_por_grupo[dependencias]</span>
+<span id="cb45-18"><a href="#cb45-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb45-19"><a href="#cb45-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-20"><a href="#cb45-20" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(errores)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.07262</code></pre>
+</div>
+</div>
+<p>La proporción simulada debe aproximarse a 0.068 cuando el número de observaciones es suficientemente grande. Puede presentar pequeñas diferencias por variabilidad aleatoria.</p>
+</section>
+<section id="teorema-de-bayes" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> .Teorema de Bayes</h1>
+<p>El <strong>teorema de Bayes</strong> permite actualizar la probabilidad de un evento cuando se obtiene nueva información. Relaciona una probabilidad condicional inversa con la probabilidad inicial y la evidencia observada.</p>
+<p>Para dos eventos <span class="math inline">A</span> y <span class="math inline">B</span>, con <span class="math inline">P(B)&gt;0</span>:</p>
+<p><learningviz type_id="BAYES_THEOREM" locale_override="es-419"></learningviz></p>
+<p>Donde:</p>
+<ul>
+<li><span class="math inline">P(A)</span>: probabilidad inicial o <em>a priori</em>.</li>
+<li><span class="math inline">P(B\mid A)</span>: probabilidad de observar la evidencia <span class="math inline">B</span> cuando ocurre <span class="math inline">A</span>.</li>
+<li><span class="math inline">P(B)</span>: probabilidad total de la evidencia.</li>
+<li><span class="math inline">P(A\mid B)</span>: probabilidad actualizada o <em>a posteriori</em>.</li>
+</ul>
+<p><strong>Ejemplo. Detección de irregularidades</strong></p>
+<p>Una entidad realiza una revisión preliminar para identificar posibles irregularidades en contratos.</p>
+<p>Se estima que:</p>
+<ul>
+<li>El 10 % de los contratos presenta irregularidades.</li>
+<li>El procedimiento de revisión identifica correctamente el 90 % de los contratos irregulares.</li>
+<li>El procedimiento señala equivocadamente como irregular el 5 % de los contratos que no tienen irregularidades.</li>
+</ul>
+<p>Definimos:</p>
+<ul>
+<li><span class="math inline">I</span>: el contrato presenta irregularidad.</li>
+<li><span class="math inline">+</span>: el procedimiento emite una alerta positiva.</li>
+</ul>
+<p>Los datos son:</p>
+<p><span class="math display">
+P(I)=0.10
+</span></p>
+<p><span class="math display">
+P(+\mid I)=0.90
+</span></p>
+<p><span class="math display">
+P(+\mid I^c)=0.05
+</span></p>
+<p>Primero calculamos la probabilidad total de una alerta positiva:</p>
+<p><span class="math display">
+P(+)=P(+\mid I)P(I)+P(+\mid I^c)P(I^c)
+</span></p>
+<p><span class="math display">
+P(+)=(0.90)(0.10)+(0.05)(0.90)=0.135
+</span></p>
+<p>Ahora aplicamos Bayes:</p>
+<p><span class="math display">
+P(I\mid +)=
+\frac{P(+\mid I)P(I)}{P(+)}
+</span></p>
+<p><span class="math display">
+P(I\mid +)=\frac{(0.90)(0.10)}{0.135}
+=0.6667
+</span></p>
+<p>La probabilidad de que un contrato tenga irregularidades, dado que el procedimiento emitió una alerta positiva, es aproximadamente 66.67 %.</p>
+<p><strong>Interpretación:</strong> una alerta positiva no significa que exista certeza de irregularidad. La probabilidad posterior depende también de la frecuencia inicial de irregularidades y de los falsos positivos. Una alerta debe conducir a una revisión adecuada y no, por sí sola, a una conclusión sancionatoria.</p>
+<p><strong>Aplicación en R</strong></p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Probabilidades iniciales</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>p_irregular <span class="ot">&lt;-</span> <span class="fl">0.10</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>p_regular <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> p_irregular</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Desempeño del procedimiento</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>p_positivo_dado_irregular <span class="ot">&lt;-</span> <span class="fl">0.90</span></span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>p_positivo_dado_regular <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Probabilidad total de alerta positiva</span></span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>p_positivo <span class="ot">&lt;-</span> (</span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>  p_positivo_dado_irregular <span class="sc">*</span> p_irregular <span class="sc">+</span></span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>  p_positivo_dado_regular <span class="sc">*</span> p_regular</span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Teorema de Bayes</span></span>
+<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a>p_irregular_dado_positivo <span class="ot">&lt;-</span> (</span>
+<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a>  p_positivo_dado_irregular <span class="sc">*</span> p_irregular</span>
+<span id="cb47-18"><a href="#cb47-18" aria-hidden="true" tabindex="-1"></a>) <span class="sc">/</span> p_positivo</span>
+<span id="cb47-19"><a href="#cb47-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-20"><a href="#cb47-20" aria-hidden="true" tabindex="-1"></a>p_positivo</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.135</code></pre>
+</div>
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>p_irregular_dado_positivo</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6666667</code></pre>
+</div>
+</div>
+<p><strong>Análisis de sensibilidad</strong></p>
+<p>La probabilidad posterior cambia cuando cambia la prevalencia inicial de irregularidades. El siguiente código muestra ese comportamiento:</p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>prevalencia <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.01</span>, <span class="fl">0.50</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>posterior <span class="ot">&lt;-</span> (</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  p_positivo_dado_irregular <span class="sc">*</span> prevalencia</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">/</span> (</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>  p_positivo_dado_irregular <span class="sc">*</span> prevalencia <span class="sc">+</span></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>  p_positivo_dado_regular <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> prevalencia)</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>  prevalencia,</span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>  posterior,</span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"l"</span>,</span>
+<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">lwd =</span> <span class="dv">2</span>,</span>
+<span id="cb51-15"><a href="#cb51-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Proporción inicial de contratos irregulares"</span>,</span>
+<span id="cb51-16"><a href="#cb51-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"Probabilidad posterior de irregularidad"</span>,</span>
+<span id="cb51-17"><a href="#cb51-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Actualización bayesiana"</span></span>
+<span id="cb51-18"><a href="#cb51-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb51-19"><a href="#cb51-19" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> <span class="dv">0</span>, <span class="at">b =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Shiny web teorema de Bayes</strong></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Dar clic sobre la figura
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://connect.posit.cloud/dasaho2/content/01a1c78f-de13-aa6b-7057-6ed17437cbc4?utm_source=rsconnect-rstudio"><img src="images/clipboard-815471166.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
+</figure>
+</div>
+</section>
+<section id="resumen-de-fórmulas-fundamentales" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> .Resumen de fórmulas fundamentales</h1>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concepto</th>
+<th>Fórmula</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Probabilidad clásica</td>
+<td><span class="math inline">P(A)=\frac{|A|}{|\Omega|}</span></td>
+</tr>
+<tr class="even">
+<td>Frecuencia relativa</td>
+<td><span class="math inline">\widehat{P}(A)=\frac{f_A}{n}</span></td>
+</tr>
+<tr class="odd">
+<td>Complemento</td>
+<td><span class="math inline">P(A^c)=1-P(A)</span></td>
+</tr>
+<tr class="even">
+<td>Unión de dos eventos</td>
+<td><span class="math inline">P(A\cup B)=P(A)+P(B)-P(A\cap B)</span></td>
+</tr>
+<tr class="odd">
+<td>Probabilidad condicional</td>
+<td><span class="math inline">P(A\mid B)=\frac{P(A\cap B)}{P(B)}</span></td>
+</tr>
+<tr class="even">
+<td>Independencia</td>
+<td><span class="math inline">P(A\cap B)=P(A)P(B)</span></td>
+</tr>
+<tr class="odd">
+<td>Multiplicación</td>
+<td><span class="math inline">P(A\cap B)=P(A)P(B\mid A)</span></td>
+</tr>
+<tr class="even">
+<td>Probabilidad total</td>
+<td><span class="math inline">P(A)=\sum_i P(A\mid B_i)P(B_i)</span></td>
+</tr>
+<tr class="odd">
+<td>Bayes</td>
+<td><span class="math inline">P(B_j\mid A)=\frac{P(A\mid B_j)P(B_j)}{\sum_iP(A\mid B_i)P(B_i)}</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="taller-de-aplicación" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> .Taller de aplicación</h1>
+<p>Resuelva los siguientes ejercicios. En cada caso, identifique los eventos, formule las probabilidades y desarrolle la solución matemática. Cuando corresponda, compruebe los resultados mediante R.</p>
+<section id="ejercicio-1.-espacio-muestral-y-eventos" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="ejercicio-1.-espacio-muestral-y-eventos"><span class="header-section-number">15.1</span> Ejercicio 1. Espacio muestral y eventos</h2>
+<p>Una oficina de atención al ciudadano selecciona al azar una de seis solicitudes, identificadas con los números 1 a 6.</p>
+<ol type="1">
+<li>Escriba el espacio muestral.</li>
+<li>Defina el evento <span class="math inline">A</span>: seleccionar una solicitud con número par.</li>
+<li>Defina el evento <span class="math inline">B</span>: seleccionar una solicitud con número mayor que 3.</li>
+<li>Determine <span class="math inline">A\cup B</span>, <span class="math inline">A\cap B</span> y <span class="math inline">A^c</span>.</li>
+<li>Calcule las probabilidades de los eventos anteriores, suponiendo que todas las solicitudes tienen la misma posibilidad de selección.</li>
+</ol>
+</section>
+<section id="ejercicio-2.-probabilidad-clásica" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="ejercicio-2.-probabilidad-clásica"><span class="header-section-number">15.2</span> Ejercicio 2. Probabilidad clásica</h2>
+<p>En un programa municipal se seleccionan al azar 5 expedientes de un conjunto de 20. ¿Cuál es la probabilidad de que un expediente seleccionado al azar corresponda a una de las 8 solicitudes de mejoramiento de vivienda?</p>
+<p>Calcule también la probabilidad de que no corresponda a esa categoría.</p>
+</section>
+<section id="ejercicio-3.-probabilidad-frecuentista" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="ejercicio-3.-probabilidad-frecuentista"><span class="header-section-number">15.3</span> Ejercicio 3. Probabilidad frecuentista</h2>
+<p>Durante un mes, una dependencia recibió 800 solicitudes, de las cuales 680 fueron atendidas dentro del plazo establecido.</p>
+<ol type="1">
+<li>Estime la probabilidad frecuentista de atención oportuna.</li>
+<li>Estime la probabilidad de incumplimiento del plazo.</li>
+<li>Represente los resultados mediante un gráfico de barras en R.</li>
+</ol>
+</section>
+<section id="ejercicio-4.-probabilidad-condicional" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="ejercicio-4.-probabilidad-condicional"><span class="header-section-number">15.4</span> Ejercicio 4. Probabilidad condicional</h2>
+<p>En una encuesta a 600 ciudadanos, 360 utilizan servicios digitales. De estos últimos, 240 manifiestan estar satisfechos. Entre los 240 ciudadanos que no utilizan servicios digitales, 120 están satisfechos.</p>
+<ol type="1">
+<li>Calcule la probabilidad de satisfacción.</li>
+<li>Calcule la probabilidad de utilizar servicios digitales dado que el ciudadano está satisfecho.</li>
+<li>Calcule la probabilidad de satisfacción dado que utiliza servicios digitales.</li>
+<li>Interprete las diferencias entre las probabilidades condicionales.</li>
+</ol>
+</section>
+<section id="ejercicio-5.-teorema-de-bayes" class="level2" data-number="15.5">
+<h2 data-number="15.5" class="anchored" data-anchor-id="ejercicio-5.-teorema-de-bayes"><span class="header-section-number">15.5</span> Ejercicio 5. Teorema de Bayes</h2>
+<p>Una entidad pública recibe solicitudes de tres dependencias. La dependencia A aporta el 50 % de las solicitudes, B el 30 % y C el 20 %. Las proporciones de solicitudes con errores son 4 %, 7 % y 10 %, respectivamente.</p>
+<ol type="1">
+<li>Calcule la probabilidad total de seleccionar una solicitud con errores.</li>
+<li>Si una solicitud presenta errores, calcule la probabilidad de que provenga de la dependencia C.</li>
+<li>Desarrolle la solución mediante el teorema de Bayes y compruebe el resultado en R.</li>
+</ol>
+</section>
+</section>
+<section id="respuestas" class="level1" data-number="16">
+<h1 data-number="16"><span class="header-section-number">16</span> .Respuestas</h1>
+<p>Estas respuestas permiten verificar los resultados numéricos principales.</p>
+<ul>
+<li><strong>Ejercicio 1:</strong></li>
+</ul>
+<p><span class="math inline">A=\{2,4,6\}</span>, <span class="math inline">B=\{4,5,6\}</span>, <span class="math inline">A\cup B=\{2,4,5,6\}</span>, <span class="math inline">A\cap B=\{4,6\}</span>, <span class="math inline">A^c=\{1,3,5\}</span>. Las probabilidades son <span class="math inline">4/6</span>, <span class="math inline">2/6</span> y <span class="math inline">3/6</span>, respectivamente, para unión, intersección y complemento.</p>
+<ul>
+<li><strong>Ejercicio 2:</strong></li>
+</ul>
+<p><span class="math inline">P(A)=8/20=0.40</span>; <span class="math inline">P(A^c)=0.60</span>.</p>
+<ul>
+<li><strong>Ejercicio 3:</strong></li>
+</ul>
+<p>atención oportuna <span class="math inline">=680/800=0.85</span>; incumplimiento <span class="math inline">=0.15</span>.</p>
+<ul>
+<li><strong>Ejercicio 4:</strong></li>
+</ul>
+<p>satisfacción <span class="math inline">=(240+120)/600=0.60</span>; <span class="math inline">P(\text{digital}\mid\text{satisfecho})=240/360=0.6667</span>; <span class="math inline">P(\text{satisfecho}\mid\text{digital})=240/360=0.6667</span>. En este ejercicio ambos denominadores coinciden por los datos propuestos.</p>
+<ul>
+<li><strong>Ejercicio 5:</strong></li>
+</ul>
+<p><span class="math inline">P(E)=0.50(0.04)+0.30(0.07)+0.20(0.10)=0.063</span>. <span class="math inline">P(C\mid E)=0.20(0.10)/0.063\approx0.3175</span>, es decir, 31.75 %.</p>
+</section>
+<section id="conclusiones" class="level1" data-number="17">
+<h1 data-number="17"><span class="header-section-number">17</span> .Conclusiones</h1>
+<p>La probabilidad constituye una base esencial para el análisis de datos y la toma de decisiones en contextos de incertidumbre. Sus conceptos permiten describir resultados aleatorios, cuantificar riesgos, evaluar información y construir modelos para apoyar decisiones públicas.</p>
+<p>La probabilidad condicional, los teoremas de multiplicación y probabilidad total, y el teorema de Bayes son especialmente importantes para analizar situaciones en las que la información disponible modifica la evaluación de un evento. R facilita estos cálculos, permite simular experimentos y ayuda a comunicar resultados mediante tablas y gráficos.</p>
+</section>
+<section id="referencias-bibliográficas" class="level1" data-number="18">
+<h1 data-number="18"><span class="header-section-number">18</span> .Referencias bibliográficas</h1>
+<ul>
+<li>Devore, J. L. (2016). <em>Probability and Statistics for Engineering and the Sciences</em> (9th ed.). Cengage Learning.</li>
+<li>Ross, S. M. (2014). <em>Introduction to Probability Models</em> (11th ed.). Academic Press.</li>
+<li>Triola, M. F. (2018). <em>Elementary Statistics</em> (13th ed.). Pearson.</li>
+<li>R Core Team. (2026). <em>R: A Language and Environment for Statistical Computing</em>. R Foundation for Statistical Computing. https://www.R-project.org/</li>
+</ul>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+<script src="index_files/libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
